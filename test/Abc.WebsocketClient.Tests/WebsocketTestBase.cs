@@ -1,7 +1,6 @@
 ﻿using System;
 using Fleck;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Xunit;
 using Xunit.Abstractions;
 
 namespace Abc.WebsocketClient
@@ -18,7 +17,7 @@ namespace Abc.WebsocketClient
 
         protected WebsocketTestBase(ITestOutputHelper testOutputHelper, int port)
         {
-            Logger = LoggerFactory.Create(builder => builder.AddProvider(new XunitLoggerProvider(testOutputHelper)))
+            Logger = LoggerFactory.Create(builder => builder.AddXUnit(testOutputHelper))
                 .CreateLogger("test");
             _port = port;
 
