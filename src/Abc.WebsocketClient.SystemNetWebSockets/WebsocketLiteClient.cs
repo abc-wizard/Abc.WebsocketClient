@@ -11,12 +11,12 @@ namespace Abc.WebsocketClient.SystemNetWebSockets
     public class WebsocketLiteClient : WebsocketLiteClientBase
     {
         private readonly string _url;
-        private readonly InnerClientFactory<System.Net.WebSockets.ClientWebSocket>? _innerClientFactory;
+        private readonly InnerClientFactory<ClientWebSocket>? _innerClientFactory;
         private bool _closeFlag;
-        private System.Net.WebSockets.ClientWebSocket _innerClient;
+        private ClientWebSocket _innerClient;
 
         public WebsocketLiteClient(string url,
-            InnerClientFactory<System.Net.WebSockets.ClientWebSocket>? innerClientFactory = null,
+            InnerClientFactory<ClientWebSocket>? innerClientFactory = null,
             Encoding? encoding = null, ILogger? logger = null) : base(encoding, logger)
         {
             _url = url;
@@ -48,7 +48,7 @@ namespace Abc.WebsocketClient.SystemNetWebSockets
 
         protected override void AbortInnerClient(object client)
         {
-            if (!(client is System.Net.WebSockets.ClientWebSocket clientWebSocket)) return;
+            if (!(client is ClientWebSocket clientWebSocket)) return;
             clientWebSocket.Abort();
         }
 
@@ -57,10 +57,11 @@ namespace Abc.WebsocketClient.SystemNetWebSockets
             var client = _innerClient = CreateNewInnerClient(_url);
 
             await client.ConnectAsync(new Uri(_url), cancellationToken);
+            // ReSharper disable once AssignmentIsFullyDiscarded
             _ = StartListen(client);
         }
 
-        private async Task StartListen(System.Net.WebSockets.ClientWebSocket client)
+        private async Task StartListen(ClientWebSocket client)
         {
             // define buffer here and reuse, to avoid more allocation
             const int chunkSize = 1024 * 8;
@@ -176,9 +177,9 @@ namespace Abc.WebsocketClient.SystemNetWebSockets
                    client.State == WebSocketState.None;
         }
 
-        private System.Net.WebSockets.ClientWebSocket CreateNewInnerClient(string url)
+        private ClientWebSocket CreateNewInnerClient(string url)
         {
-            return _innerClientFactory?.Invoke(url) ?? new System.Net.WebSockets.ClientWebSocket();
+            return _innerClientFactory?.Invoke(url) ?? new ClientWebSocket();
         }
     }
 }
