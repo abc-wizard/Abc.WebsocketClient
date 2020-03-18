@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <IsPackable>false</IsPackable>
+        <RootNamespace>Abc.WebsocketClient</RootNamespace>
+        <LangVersion>8</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Fleck" Version="1.1.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.2" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+        <PackageReference Include="MicrosoftExtensions.Logging.Xunit" Version="1.0.0" />
+        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
+        <PackageReference Include="coverlet.collector" Version="1.0.1" />
+        <PackageReference Include="Shouldly" Version="3.0.2" />
+        <PackageReference Include="Moq" Version="4.13.1" />
+
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Abc.WebsocketClient.Abstractions\Abc.WebsocketClient.Abstractions.csproj" />
+        <ProjectReference Include="..\..\src\Abc.WebsocketClient.SystemNetWebSockets\Abc.WebsocketClient.SystemNetWebSockets.csproj" />
+        <ProjectReference Include="..\..\src\Abc.WebsocketClient.WebSocket4Net\Abc.WebsocketClient.WebSocket4Net.csproj" />
+    </ItemGroup>
+
+</Project>

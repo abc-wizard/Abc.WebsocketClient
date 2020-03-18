@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <LangVersion>8</LangVersion>
+        <Nullable>enable</Nullable>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>1.0.0-alpha</PackageVersion>
+        <Authors>abc.wizard</Authors>
+        <Description>https://github.com/abc-wizard/Abc.WebsocketClient</Description>
+        <PackageProjectUrl>https://github.com/abc-wizard/Abc.WebsocketClient</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/abc-wizard/Abc.WebsocketClient/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/abc-wizard/Abc.WebsocketClient</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>websocket,client,System.Net.WebSockets</PackageTags>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Title>Abc.WebsocketClient.SystemNetWebSockets</Title>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="System.Net.WebSockets.Client" Version="4.3.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Abc.WebsocketClient.Abstractions\Abc.WebsocketClient.Abstractions.csproj" />
+    </ItemGroup>
+
+</Project>
