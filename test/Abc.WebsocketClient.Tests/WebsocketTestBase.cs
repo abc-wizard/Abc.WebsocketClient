@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Sockets;
 using Fleck;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Xunit;
@@ -9,7 +10,6 @@ namespace Abc.WebsocketClient
     public abstract class WebsocketTestBase : IDisposable
     {
         private const string Host = "ws://127.0.0.1";
-        private readonly int _port;
         private readonly WebSocketServer _server;
 
         protected readonly ILogger Logger;
@@ -20,7 +20,6 @@ namespace Abc.WebsocketClient
         {
             Logger = LoggerFactory.Create(builder => builder.AddProvider(new XunitLoggerProvider(testOutputHelper)))
                 .CreateLogger("test");
-            _port = port;
 
             Url = $"{Host}:{port}";
             _server = new WebSocketServer(Url)
